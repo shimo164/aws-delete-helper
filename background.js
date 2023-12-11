@@ -8,10 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === 'fillDelete') {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      files: ['content.js'],
-    });
+    chrome.tabs.sendMessage(tab.id, { action: 'executeScript' });
   }
 });
 
@@ -22,8 +19,6 @@ const isValidUrl = (url) => {
 chrome.action.onClicked.addListener((tab) => {
   const url = tab.url;
   if (!isValidUrl(url)) return;
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: ['content.js'],
-  });
+
+  chrome.tabs.sendMessage(tab.id, { action: 'executeScript' });
 });

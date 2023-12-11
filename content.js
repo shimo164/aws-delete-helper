@@ -170,9 +170,8 @@ function fillDeleteText() {
     }
   });
 
-  const conditionCallback = (el) => /^Delete\s.*/.test(el.textContent.trim());
-  const successUrlPattern =
-    /s3\.console\.aws\.amazon\.com\/s3\/buckets\/[^\/]+\/object\/delete/;
+  const conditionCallback = (el) => /^Delete.*/.test(el.textContent.trim());
+  const successUrlPattern = /console\.aws\.amazon\.com/;
   const closeBtnText = 'Close';
   const maxRetries = 5;
 
@@ -184,7 +183,11 @@ function fillDeleteText() {
   );
 }
 
-// Run the delete bucket function and if it returns false, run the fillDeleteText function.
-if (!deleteBucket()) {
-  fillDeleteText();
-}
+// メッセージリスナーを追加
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'executeScript') {
+    if (!deleteBucket()) {
+      fillDeleteText();
+    }
+  }
+});

@@ -14,6 +14,20 @@ This extension can be operated in three ways
 - Clicking the icon on the extension menu bar
 - Setting a shortcut yourself
 
+## How to install
+
+- Download the folder of change-website-lang/.
+- Go to chrome://extensions/, turn on Developer mode.
+- Click Load unpacked
+- Find and select the folder
+- See https://support.google.com/chrome/a/answer/2714278?hl=en
+
+## icon
+
+![icon](icons/48.png)
+
+(Created by [PartyRock](https://partyrock.aws/))
+
 # TODO
 - feature: more deleting types of resources
 - feature: select mode: only fill or press delete button
